@@ -43,6 +43,6 @@ class Grid
   end
 end
 
-grid_with_partial_column = Array.new(7) { Array.new(6) }
-grid_with_partial_column[0] = ["\u26AA", "\u26AA", "\u26AA", nil, nil, nil]
-Grid.new(grid_with_partial_column).display_grid
+# grid_with_partial_column = Array.new(7) { Array.new(6) }
+# grid_with_partial_column[0] = ["\u26AA", "\u26AA", "\u26AA", nil, nil, nil]
+# Grid.new(grid_with_partial_column).display_grid
