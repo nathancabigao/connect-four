@@ -33,12 +33,37 @@ class Grid
     @grid[col][row] = token_char[0]
   end
 
+  # Checks if the grid has any winning combinations (row, column, diagonals)
+  def game_over?
+    # Check columns
+    return true if column_win?
+
+    # Check rows
+
+    # Check diagonals
+
+    # Otherwise, false.
+    false
+  end
+
+  private
+
   # Returns true if column is invalid (invalid column number, or column is full)
   def invalid_col?(col)
     return true unless col.between?(0, 6)
 
     return true if @grid[col].all? { |slot| !slot.nil? } # all rows are full
 
+    false
+  end
+
+  def column_win?
+    7.times do |col|
+      3.times do |row|
+        combination = @grid[col][row..row + 3].uniq
+        return true if combination.size == 1 && !combination.include?(nil)
+      end
+    end
     false
   end
 end
