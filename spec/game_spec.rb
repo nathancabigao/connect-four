@@ -71,4 +71,23 @@ describe 'Game' do
       end
     end
   end
+
+  describe '#toggle_player' do
+    context 'when player 1' do
+      subject(:game_toggle_one) { Game.new }
+      it 'changes from player 1 to player 2' do
+        expect { game_toggle_one.toggle_player }.to change { game_toggle_one.current_player }.from(game_toggle_one.player_one).to(game_toggle_one.player_two)
+      end
+    end
+    
+    context 'when player 2' do
+      subject(:game_toggle_two) { Game.new }
+      before do
+        game_toggle_two.instance_variable_set(:@current_player, game_toggle_two.player_two)
+      end
+      it 'changes from player 2 to player 1' do
+        expect { game_toggle_two.toggle_player }.to change { game_toggle_two.current_player }.from(game_toggle_two.player_two).to(game_toggle_two.player_one)
+      end
+    end
+  end
 end

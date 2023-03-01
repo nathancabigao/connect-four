@@ -5,7 +5,7 @@ require_relative 'player'
 
 # Used to create games of Connect 4.
 class Game
-  attr_reader :grid, :player_one, :player_two
+  attr_reader :grid, :player_one, :player_two, :current_player
 
   def initialize
     @grid = Grid.new
@@ -23,5 +23,9 @@ class Game
 
       puts error_message
     end
+  end
+
+  def toggle_player
+    @current_player = @current_player == @player_one ? @player_two : @player_one
   end
 end
