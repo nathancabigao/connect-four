@@ -59,7 +59,7 @@ describe 'Game' do
       end
     end
 
-    context 'when user input is invalid, followed by a valid input' do
+    context 'when user input is invalid 2 times, followed by a valid input' do
       subject(:game_input_invalid_twice) { Game.new }
       before do
         allow(game_input_invalid_twice).to receive(:puts)
@@ -68,7 +68,7 @@ describe 'Game' do
         valid_input = '7'
         allow(game_input_invalid_twice).to receive(:gets).and_return(invalid_input_one, invalid_input_two, valid_input)
       end
-      it 'displays an error message and loops once' do
+      it 'displays an error message and loops twice' do
         error_message = 'Invalid column selection. Please enter the number of a column (1-7) that is not full.'
         expect(game_input_invalid_twice).to receive(:puts).with(error_message).exactly(2).times
         game_input_invalid_twice.player_input
