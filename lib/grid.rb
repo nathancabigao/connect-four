@@ -42,6 +42,7 @@ class Grid
     return true if row_win?
 
     # Check diagonals
+    return true if diagonal_win?
 
     # Otherwise, false.
     false
@@ -58,11 +59,15 @@ class Grid
     false
   end
 
+  def winning_combination?(combination)
+    combination.uniq.size == 1 && !combination.uniq.include?(nil)
+  end
+
   def column_win?
     7.times do |col|
       3.times do |row|
-        combination = @grid[col][row..row + 3].uniq
-        return true if combination.size == 1 && !combination.include?(nil)
+        combination = @grid[col][row..row + 3]
+        return true if winning_combination?(combination)
       end
     end
     false
@@ -74,7 +79,41 @@ class Grid
         combination = []
         # Get the combinations from cols 0..3 to 3..6
         (col..col + 3).each { |col_to_add| combination << @grid[col_to_add][row] }
-        return true if combination.uniq.size == 1 && !combination.uniq.include?(nil)
+        return true if winning_combination?(combination)
+      end
+    end
+    false
+  end
+
+  def diagonal_win?
+    return true if diagonal_up_win?
+
+    return true if diagonal_down_win?
+
+    false
+  end
+
+  def diagonal_up_win?
+    4.times.reverse_each do |col|
+      3.times do |row|
+        combination = []
+        4.times do |next_slot|
+          combination << @grid[col + next_slot][row + next_slot]
+        end
+        return true if winning_combination?(combination)
+      end
+    end
+    false
+  end
+
+  def diagonal_down_win?
+    4.times do |col|
+      (3..5).each do |row|
+        combination = []
+        4.times do |next_slot|
+          combination << @grid[col + next_slot][row - next_slot]
+        end
+        return true if winning_combination?(combination)
       end
     end
     false
