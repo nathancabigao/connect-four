@@ -13,7 +13,7 @@ class Grid
   end
 
   def display_grid
-    puts '| 1  | 2  | 3  | 4  | 5  | 6  | 7  |'
+    puts "\n| 1  | 2  | 3  | 4  | 5  | 6  | 7  |"
     puts '------------------------------------'
     6.times.reverse_each do |row|
       print '|'
