@@ -39,6 +39,7 @@ class Grid
     return true if column_win?
 
     # Check rows
+    return true if row_win?
 
     # Check diagonals
 
@@ -62,6 +63,18 @@ class Grid
       3.times do |row|
         combination = @grid[col][row..row + 3].uniq
         return true if combination.size == 1 && !combination.include?(nil)
+      end
+    end
+    false
+  end
+
+  def row_win?
+    6.times.reverse_each do |row|
+      4.times do |col|
+        combination = []
+        # Get the combinations from cols 0..3 to 3..6
+        (col..col + 3).each { |col_to_add| combination << @grid[col_to_add][row] }
+        return true if combination.uniq.size == 1 && !combination.uniq.include?(nil)
       end
     end
     false

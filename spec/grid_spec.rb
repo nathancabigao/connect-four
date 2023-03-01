@@ -79,6 +79,8 @@ describe 'Grid' do
       no_win = Array.new(7) { Array.new(6) }
       no_win[0] = ["\u26AA", "\u26AA", nil, nil, nil, nil]
       no_win[1] = ["\u26AB", "\u26AB", nil, nil, nil, nil]
+      no_win[2] = ["\u26AB", "\u26AB", nil, nil, nil, nil]
+      no_win[0] = ["\u26AA", "\u26AA", nil, nil, nil, nil]
       subject(:grid_game_over_no_win) { Grid.new(no_win) }
       it { is_expected.not_to be_game_over }
     end
