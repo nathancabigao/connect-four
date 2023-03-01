@@ -27,7 +27,6 @@ class Game
     end_message
   end
 
-  # Gets a column number from the player to place their token into
   def player_input
     loop do
       puts "Player #{@current_player.player_no} (#{@current_player.token}), your turn:"
@@ -55,7 +54,9 @@ class Game
 
   def welcome_message
     puts 'Welcome to Connect Four!'
-    puts 'Connect Four is a two-player game where players take turns placing their tokens into a grid, competing to respectively have four consecutive tokens placed in a row, column, or diagonal.'
-    puts "To play, simply enter the number (1-7) of the column you wish to place your piece into, and play until a winner is decided!\n"
+    puts 'Connect Four is a two-player game where players take turns placing their tokens into a grid, competing to ' \
+         'respectively have four consecutive tokens placed in a row, column, or diagonal.'
+    puts 'To play, simply enter the number (1-7) of the column you wish to place your piece into, and play until ' \
+         "a winner is decided!\n"
   end
 end

@@ -25,7 +25,6 @@ class Grid
     end
   end
 
-  # Places token_char into the first available row in the given col if possible.
   def place_token(token_char, col)
     return 'Invalid column selection. Please enter the number of a column (1-7) that is not full.' if invalid_col?(col)
 
@@ -33,28 +32,22 @@ class Grid
     @grid[col][row] = token_char[0]
   end
 
-  # Checks if the grid has any winning combinations (row, column, diagonals)
   def game_over?
-    # Check columns
     return true if column_win?
 
-    # Check rows
     return true if row_win?
 
-    # Check diagonals
     return true if diagonal_win?
 
-    # Otherwise, false.
     false
   end
 
   private
 
-  # Returns true if column is invalid (invalid column number, or column is full)
   def invalid_col?(col)
     return true unless col.between?(0, 6)
 
-    return true if @grid[col].all? { |slot| !slot.nil? } # all rows are full
+    return true if @grid[col].all? { |slot| !slot.nil? }
 
     false
   end
@@ -77,7 +70,6 @@ class Grid
     6.times.reverse_each do |row|
       4.times do |col|
         combination = []
-        # Get the combinations from cols 0..3 to 3..6
         (col..col + 3).each { |col_to_add| combination << @grid[col_to_add][row] }
         return true if winning_combination?(combination)
       end
@@ -119,7 +111,3 @@ class Grid
     false
   end
 end
-
-# grid_with_partial_column = Array.new(7) { Array.new(6) }
-# grid_with_partial_column[0] = ["\u26AA", "\u26AA", "\u26AA", nil, nil, nil]
-# Grid.new(grid_with_partial_column).display_grid
